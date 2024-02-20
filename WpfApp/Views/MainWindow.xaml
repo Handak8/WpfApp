@@ -1,0 +1,127 @@
+﻿<Window x:Class="WpfApp.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp.Views"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <TabControl Grid.Row="0" SelectedItem="{Binding SelectedTabItem}">
+            <TabItem Name="AbonetnTab">
+                <TabItem.Header>
+                    <TextBlock Text="Abonents"/>
+                </TabItem.Header>
+                <TabItem.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Редактировать" Command="{Binding OpenEditAbonentWind}"/>
+                        <MenuItem Header="Удалить" Command="{Binding DeleteItem}"/>
+                    </ContextMenu>
+                </TabItem.ContextMenu>
+                <ListView x:Name="ViewAllAbonents" ItemsSource="{Binding AllAbonents}"
+                          SelectedItem="{Binding SelectedAbonent}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Country"
+                                            DisplayMemberBinding="{Binding Path=Country}"/>
+                            <GridViewColumn Header="City"
+                                            DisplayMemberBinding="{Binding Path=City}"/>
+                            <GridViewColumn Header="Number"
+                                            DisplayMemberBinding="{Binding Path=Pnumber}"/>
+                            <GridViewColumn Header="Fax"
+                                            DisplayMemberBinding="{Binding Path=Fax}"/>
+                            <GridViewColumn Header="Description"
+                                            DisplayMemberBinding="{Binding Path=Description}"/>
+                            <GridViewColumn Header="Abonent type"
+                                            DisplayMemberBinding="{Binding Path=AbType.Name}"/>
+                            <GridViewColumn Header="Secure"
+                                            DisplayMemberBinding="{Binding Path=Secure}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </TabItem>
+            <TabItem Name="AbonentTypeTab">
+                <TabItem.Header>
+                    <TextBlock Text="AbonentTypes"/>
+                </TabItem.Header>
+                <TabItem.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Редактировать" Command="{Binding OpenEditAbonentTypeWind}"/>
+                        <MenuItem Header="Удалить" Command="{Binding DeleteItem}"/>
+                    </ContextMenu>
+                </TabItem.ContextMenu>
+                <ListView x:Name="ViewAllAbonentTypes" ItemsSource="{Binding AllAbonentTypes}"
+                           SelectedItem="{Binding SelectedAbonentType}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Name"
+                                            DisplayMemberBinding="{Binding Path=Name}"/>
+                            <GridViewColumn Header="Mobile"
+                                            DisplayMemberBinding="{Binding Path=Mobile}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </TabItem>
+            <TabItem Name="AbonentDetailTab">
+                <TabItem.Header>
+                    <TextBlock Text="AbonentDetails"/>
+                </TabItem.Header>
+                <ListView x:Name="ViewAllAbonentDetails" ItemsSource="{Binding AllAbonentDetails}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Date"
+                                            DisplayMemberBinding="{Binding Path=DateTime}"/>
+                            <GridViewColumn Header="Abonent"
+                                            DisplayMemberBinding="{Binding Path=AbonentId}"/>
+                            <GridViewColumn Header="Reporter"
+                                            DisplayMemberBinding="{Binding Path=Reporter}"/>
+                            <GridViewColumn Header="Service"
+                                            DisplayMemberBinding="{Binding Path=Service}"/>
+                            <GridViewColumn Header="Duration"
+                                            DisplayMemberBinding="{Binding Path=Duration}"/>
+                            <GridViewColumn Header="Cost"
+                                            DisplayMemberBinding="{Binding Path=Cost}"/>
+                            <GridViewColumn Header="Rouming"
+                                            DisplayMemberBinding="{Binding Path=Rouming}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </TabItem>
+            <TabItem Name="AbonentServicesTab">
+                <TabItem.Header>
+                    <TextBlock Text="AbonentServices"/>
+                </TabItem.Header>
+                <ListView x:Name="ViewAllAbonentServices" ItemsSource="{Binding AllAbonentServices}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Date"
+                                            DisplayMemberBinding="{Binding Path=DateTime}"/>
+                            <GridViewColumn Header="Abonent"
+                                            DisplayMemberBinding="{Binding Path=AbonentId}"/>
+                            <GridViewColumn Header="Service"
+                                            DisplayMemberBinding="{Binding Path=Service}"/>
+                            <GridViewColumn Header="Duration"
+                                            DisplayMemberBinding="{Binding Path=Name}"/>
+                            <GridViewColumn Header="Cost"
+                                            DisplayMemberBinding="{Binding Path=Cost}"/>
+                            <GridViewColumn Header="Cost_NDS"
+                                            DisplayMemberBinding="{Binding Path=CostNds}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </TabItem>
+        </TabControl>
+        <StackPanel Grid.Row="1" Orientation="Horizontal"
+                    HorizontalAlignment="Left">
+            <Button Content="Новый абонент" Command="{Binding OpenAddNewAbonentWind}"/>
+            <Button Content="Новый тип абонента" Command="{Binding OpenAddNewAbonentTypeWind}"/>
+            <Button Content="Отчет 1" Command="{Binding GenerateReportOne}"/>
+            <Button Content="Отчет 2" Command="{Binding GenerateReportTwo}"/>
+            <Button Content="Отчет3" Command="{Binding GenerateReportThree}"/>
+        </StackPanel>
+    </Grid>
+</Window>
